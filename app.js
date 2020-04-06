@@ -1,14 +1,14 @@
 //added each individual class file within the function
 const inquirer = require("inquirer");
 const fs = require("fs"); //write BuildHTML file
-const util = require("util"); //need this?
-const writeFileAsync = util.promisify(fs.writeFile); //need this?
-const generateHTML = require("./lib/generateHTML");
+// const util = require("util"); //need this?
+// const writeFileAsync = util.promisify(fs.writeFile); //need this?
+// const generateHTML = require("./lib/generateHTML");
 const BuildHTML = require("./lib/BuildHTML"); //render generator
 
-// const path = require("path");
-// const OUTPUT_DIR = path.resolve(_dirname, "output"); //output path
-// const outputPath = path.join(OUTPUT_DIR, "employees.html");
+const path = require("path");
+const OUTPUT_DIR = path.resolve(__dirname, "output"); //output path
+const outputPath = path.join(OUTPUT_DIR, "employees.html");
 //creates a path to output full html file
 
 const EmployeeArr = []; //one mamager with employees
@@ -169,11 +169,11 @@ function SelectEmployee() {
       if (response.next === "yes") {
         CreateTeam();
       } else {
-        const html = generateHTML(EmployeeArr);
-        writeFileAsync("index.html", html);
+        // const html = BuildHTML(EmployeeArr);
+        // writeFileAsync("index.html", html);
         // return fs.writeFile("index.html", html);
         // OR
-        //fs.writeFileSync(outputPath, BuildHTML(EmployeeArr), "utf-8");
+        fs.writeFileSync(outputPath, BuildHTML(EmployeeArr), "utf-8");
       }
     });
 } //closes selectEmployee
