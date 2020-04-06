@@ -1,14 +1,13 @@
 //added each individual class file within the function
 const inquirer = require("inquirer");
 const fs = require("fs"); //write BuildHTML file
-// const util = require("util"); //need this?
-// const writeFileAsync = util.promisify(fs.writeFile); //need this?
-// const generateHTML = require("./lib/generateHTML");
+const util = require("util"); //need this?
+const writeFileAsync = util.promisify(fs.writeFile); //need this?
 const BuildHTML = require("./lib/BuildHTML"); //render generator
-
-const path = require("path");
-const OUTPUT_DIR = path.resolve(__dirname, "output"); //output path
-const outputPath = path.join(OUTPUT_DIR, "employees.html");
+//OR
+// const path = require("path");
+// const OUTPUT_DIR = path.resolve(__dirname, "output"); //output path
+// const outputPath = path.join(OUTPUT_DIR, "employees.html");
 //creates a path to output full html file
 
 const EmployeeArr = []; //one mamager with employees
@@ -59,12 +58,8 @@ function CreateManager() {
             data.email,
             response.officeNumber
           );
-          console.log(boss.name);
-          console.log("before" + EmployeeArr);
           EmployeeArr.push(boss);
           console.log(EmployeeArr);
-          //   let print = JSON.parse(EmployeeArr);
-          //   console.log(print);
           CreateTeam();
         });
     });
@@ -118,8 +113,6 @@ function CreateTeam() {
                 data.email,
                 response.github
               );
-              console.log(engineer);
-              console.log("before" + EmployeeArr);
               EmployeeArr.push(engineer);
               console.log(EmployeeArr);
               SelectEmployee();
@@ -143,8 +136,6 @@ function CreateTeam() {
                 data.email,
                 response.school
               );
-              console.log(intern);
-              console.log("before" + EmployeeArr);
               EmployeeArr.push(intern);
               console.log(EmployeeArr);
               SelectEmployee();
@@ -165,27 +156,15 @@ function SelectEmployee() {
       },
     ])
     .then(function (response) {
-      console.log(response.next);
       if (response.next === "yes") {
         CreateTeam();
       } else {
-        // const html = BuildHTML(EmployeeArr);
-        // writeFileAsync("index.html", html);
-        // return fs.writeFile("index.html", html);
+        const html = BuildHTML(EmployeeArr);
+        writeFileAsync("./output/team.html", html);
         // OR
-        fs.writeFileSync(outputPath, BuildHTML(EmployeeArr), "utf-8");
+        // fs.writeFileSync(outputPath, BuildHTML(EmployeeArr), "utf-8");
       }
     });
 } //closes selectEmployee
-
-//   var filename = data.name.toLowerCase().split(' ').join('') + ".json";
-
-//   fs.writeFile(filename, JSON.stringify(data, null, '\t'), function(err) {
-
-//     if (err) {
-//       return console.log(err);
-//     }
-
-//     console.log("Success!");
 
 CreateManager();
