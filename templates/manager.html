@@ -1,15 +1,15 @@
-
-
-        <div class="card employee-card"></div>
-        <div class="card-header">
-          <h2 class="card-title">{{ name }}</h2>
-          <h3 class="Card-title">Manager</h3>
-        </div>
-        <div class="card card-body">
-          <ul class="list-group">
-          <li class="list-group-item">ID: {{ id }}</li>>
-          <li class="list-group-item">Email: <a href="mailto{{ email }}">{{ email }}</a></li>
-          <li class="list-group-item">Office Number: {{ officeNumber }}</li>>
-          </ul>
-        </div>
-      </div>
+<div class="card" style="width: 12rem;">
+  <div class="card-header bg-success text-white" style="height: 10rem;">
+    <h2 class="card-title">{{ name }}</h2>
+    <h3 class="card-title">Manager</h3>
+  </div>
+  <div class="card .px-md-25">
+    <ul class="list-group">
+      <li class="list-group-item">ID: {{ id }}</li>
+      <li class="list-group-item">
+        Email: <a href="mailto:{{ email }}">{{ email }}</a>
+      </li>
+      <li class="list-group-item">Office Number: {{ officeNumber }}</li>
+    </ul>
+  </div>
+</div>

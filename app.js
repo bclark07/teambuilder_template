@@ -5,6 +5,7 @@ const util = require("util"); //need this?
 const writeFileAsync = util.promisify(fs.writeFile); //need this?
 const BuildHTML = require("./lib/BuildHTML"); //render generator
 //OR
+//explained in Feb 15th video
 // const path = require("path");
 // const OUTPUT_DIR = path.resolve(__dirname, "output"); //output path
 // const outputPath = path.join(OUTPUT_DIR, "employees.html");
@@ -59,7 +60,6 @@ function CreateManager() {
             response.officeNumber
           );
           EmployeeArr.push(boss);
-          console.log(EmployeeArr);
           CreateTeam();
         });
     });
@@ -114,7 +114,6 @@ function CreateTeam() {
                 response.github
               );
               EmployeeArr.push(engineer);
-              console.log(EmployeeArr);
               SelectEmployee();
               //push engineer to the EngineerArr array, or teamMembers array (15 minutes into video from 2.15)
             });
@@ -137,7 +136,6 @@ function CreateTeam() {
                 response.school
               );
               EmployeeArr.push(intern);
-              console.log(EmployeeArr);
               SelectEmployee();
             });
           break;
